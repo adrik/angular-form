@@ -1,0 +1,41 @@
+<form name="authenticationInfoForm" novalidate class="form-horizontal">
+
+  <div class="form-group" ng-class="authenticationInfoForm.email.$touched && authenticationInfoForm.email.$invalid ? 'has-error' : ''">
+    <label for="email" class="col-sm-3 control-label">Электронная почта</label>
+    <div class="col-sm-5">
+      <input type="email" ng-model="$parent.userData.email" required ng-model-options="{ updateOn: 'blur' }" class="form-control" name="email" placeholder="Адрес электронной почты" />
+    </div>
+	<div class="col-sm-4">
+	  <span class="help-block" ng-show="authenticationInfoForm.email.$touched && authenticationInfoForm.email.$error.email">Неверный адрес электронной почты</span>
+	  <span class="help-block" ng-show="authenticationInfoForm.email.$touched && authenticationInfoForm.email.$error.required">Это поле обязательно</span>
+	</div>
+  </div>
+  
+  <div class="form-group" ng-class="authenticationInfoForm.password.$touched && authenticationInfoForm.password.$invalid ? 'has-error' : ''">
+    <label for="password" class="col-sm-3 control-label">Пароль</label>
+    <div class="col-sm-5">
+      <input type="password" ng-model="$parent.userData.password" required ng-minlength="8" ng-model-options="{ updateOn: 'blur' }" class="form-control" name="password" placeholder="Пароль" />
+    </div>
+	<div class="col-sm-4">
+	  <span class="help-block" ng-show="authenticationInfoForm.password.$touched && authenticationInfoForm.password.$error.required">Это поле обязательно</span>
+	  <span class="help-block" ng-show="authenticationInfoForm.password.$touched && authenticationInfoForm.password.$error.minlength">Минимальная длина пароля - 8 символов</span>
+	</div>
+  </div>
+  
+  <div class="form-group" ng-class="authenticationInfoForm.confirm.$touched && authenticationInfoForm.confirm.$invalid ? 'has-error' : ''">
+    <label for="confirm" class="col-sm-3 control-label">Подтверждение</label>
+    <div class="col-sm-5">
+      <input type="password" ng-model="$parent.userData.confirm" val-equal-to="$parent.userData.password" ng-model-options="{ updateOn: 'blur' }" class="form-control" name="confirm" placeholder="Подтверждение пароля" />
+    </div>
+	<div class="col-sm-4">
+	  <span class="help-block" ng-show="authenticationInfoForm.confirm.$touched && authenticationInfoForm.confirm.$error.equalto">Это поле должно совпадать с паролем</span>
+	</div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <button class="btn btn-default" ng-disabled="authenticationInfoForm.$invalid" ng-click="$parent.nextStep()">Далее</button>
+    </div>
+  </div>
+  
+</form>

@@ -1,0 +1,44 @@
+<form name="personalInfoForm" novalidate class="form-horizontal">
+
+  <div class="form-group" ng-class="personalInfoForm.name.$touched && personalInfoForm.name.$invalid ? 'has-error' : ''">
+    <label for="name" class="col-sm-3 control-label">Имя</label>
+    <div class="col-sm-5">
+      <input type="name" ng-model="$parent.userData.name" required ng-model-options="{ updateOn: 'blur' }" class="form-control" name="name" placeholder="Имя" />
+    </div>
+	<div class="col-sm-4">
+	  <span class="help-block" ng-show="personalInfoForm.name.$touched && personalInfoForm.name.$error.required">Это поле обязательно</span>
+	</div>
+  </div>
+  
+  <div class="form-group" ng-class="personalInfoForm.birthday.$touched && personalInfoForm.birthday.$invalid ? 'has-error' : ''">
+    <label for="birthday" class="col-sm-3 control-label">Дата рождения</label>
+    <div class="col-sm-5">
+      <span class="input-group">
+        <input type="text" name="birthday" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="$parent.userData.birthday" required val-max-date-today is-open="datepicker.opened" max-date="datepicker.max" clear-text="Очистить" current-text="Сегодня" close-text="Закрыть" placeholder="дд.мм.гггг" />
+	    <span class="input-group-btn">
+		  <button type="button" class="btn btn-default" ng-click="datepicker.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+	    </span>
+      </span>
+    </div>
+	<div class="col-sm-4">
+	  <span class="help-block" ng-show="personalInfoForm.birthday.$touched && personalInfoForm.birthday.$error.required">Это поле обязательно</span>
+	  <span class="help-block" ng-show="personalInfoForm.birthday.$touched && personalInfoForm.birthday.$error.date">Неверный формат даты</span>
+	  <span class="help-block" ng-show="personalInfoForm.birthday.$touched && personalInfoForm.birthday.$error.maxdatetoday">Дата не может быть в будущем</span>
+	</div>
+  </div>
+  
+  <div class="form-group">
+    <label for="additional" class="col-sm-3 control-label">Дополнительная информация</label>
+    <div class="col-sm-5">
+      <textarea ng-model="$parent.userData.additional" class="form-control" name="additional" rows="10" maxlength="512" />
+	  <span class="help-block">Осталось символов: {{ 512 - $parent.userData.additional.length }}</span>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <button class="btn btn-default" ng-disabled="personalInfoForm.$invalid" ng-click="$parent.nextStep()">Далее</button>
+    </div>
+  </div>
+  
+</form>

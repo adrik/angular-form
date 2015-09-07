@@ -1,0 +1,31 @@
+body {
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+.menu {
+  list-style: none;
+  padding-left: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #777;
+}
+
+.menu li {
+  float: left;
+  padding: 3px;
+}
+
+.menu li:not(:last-child):after {
+  content: ">>"
+}
+
+.menu a.active {
+  font-weight: bold;
+}
+
+.menu a.disabled {
+  color: #aaa;
+}
+
